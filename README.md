@@ -2,6 +2,8 @@
 
 A beautiful weather widget for Waybar in Omarchy Linux that displays current weather with a 3-day forecast on hover.
 
+[!image](https://drive.google.com/file/d/1YlIQZvLBQx4EqYwSdEpZS0tY_2f7MSnb/view?usp=sharing)
+
 ## 🌟 Features
 
 - 🌤️ **Current weather** with emoji icons that change based on conditions
