@@ -103,6 +103,14 @@ clean_css() {
 restart_waybar() {
     print_status "Restarting Waybar..."
     
+    # Try systemd first (preferred in Omarchy)
+    if systemctl --user is-active --quiet waybar 2>/dev/null; then
+        systemctl --user restart waybar
+        print_success "Waybar restarted via systemd"
+        return 0
+    fi
+    
+    # Fall back to manual process management
     if pgrep -x "waybar" > /dev/null; then
         killall -q waybar
         sleep 2
@@ -110,7 +118,7 @@ restart_waybar() {
     
     # Start Waybar detached from terminal
     nohup waybar >/dev/null 2>&1 &
-    print_success "Waybar restarted"
+    print_success "Waybar restarted manually"
 }
 
 main() {
@@ -141,10 +149,24 @@ main() {
     echo "If you want to remove it, edit the file manually."
     echo
     
-    read -p "Restart Waybar now? (y/n): " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        restart_waybar
+    # Clear any buffered input and wait for final prompt
+    if [ -t 0 ]; then
+        # Only prompt if running interactively
+        read -p "Restart Waybar now? (y/n): " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            restart_waybar
+            echo
+            echo -e "${BLUE}Waybar has been restarted. If you don't see the bar, you can also restart it manually with:${NC}"
+            echo -e "${YELLOW}  systemctl --user restart waybar${NC}"
+            echo -e "${YELLOW}  # or${NC}"
+            echo -e "${YELLOW}  waybar &${NC}"
+        fi
+    else
+        echo -e "${BLUE}To restart Waybar, run one of the following commands:${NC}"
+        echo -e "${YELLOW}  systemctl --user restart waybar${NC}"
+        echo -e "${YELLOW}  # or${NC}"
+        echo -e "${YELLOW}  waybar &${NC}"
     fi
 }
 
