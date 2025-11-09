@@ -13,7 +13,8 @@ restart_waybar() {
         sleep 2
     fi
     
-    waybar &
+    # Start Waybar detached from terminal
+    nohup waybar >/dev/null 2>&1 &
     print_success "Waybar restarted"
 }
 
