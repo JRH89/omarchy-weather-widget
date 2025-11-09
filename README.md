@@ -59,7 +59,7 @@ The automated installer handles everything for you:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/omarchy-weather-widget.git
+git clone https://github.com/jrh89/omarchy-weather-widget.git
 cd omarchy-weather-widget
 
 # Run the installation script
