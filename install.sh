@@ -162,21 +162,47 @@ update_waybar_config() {
     # Create backup of config
     cp "$CONFIG_FILE" "$CONFIG_FILE.backup-$(date +%Y%m%d-%H%M%S)"
     
-    # Add weather widget to modules-center
-    sed -i 's/"modules-center": \["clock", "custom\/update", "custom\/screenrecording-indicator"/"modules-center": ["clock", "custom\/weather", "custom\/update", "custom\/screenrecording-indicator"/g' "$CONFIG_FILE"
+    # Use Python to properly update the JSON configuration
+    python3 << EOF
+import json
+import sys
+
+config_file = "$CONFIG_FILE"
+
+try:
+    with open(config_file, 'r') as f:
+        config = json.load(f)
+    
+    # Add weather widget to modules-center if it exists
+    if 'modules-center' in config:
+        if 'custom/weather' not in config['modules-center']:
+            config['modules-center'].insert(1, 'custom/weather')
     
     # Add weather widget configuration
-    cat >> "$CONFIG_FILE" << 'EOF'
-
-  "custom/weather": {
-    "exec": "~/.config/waybar/weather-widget.sh --forecast",
-    "return-type": "json",
-    "interval": 900,
-    "tooltip": true
-  },
+    config['custom/weather'] = {
+        "exec": "~/.config/waybar/weather-widget.sh --forecast",
+        "return-type": "json",
+        "interval": 900,
+        "tooltip": True
+    }
+    
+    # Write back to file with proper formatting
+    with open(config_file, 'w') as f:
+        json.dump(config, f, indent=2)
+    
+    print("Waybar configuration updated successfully")
+    
+except Exception as e:
+    print(f"Error updating config: {e}")
+    sys.exit(1)
 EOF
     
-    print_success "Waybar configuration updated"
+    if [ $? -eq 0 ]; then
+        print_success "Waybar configuration updated"
+    else
+        print_error "Failed to update Waybar configuration"
+        return 1
+    fi
 }
 
 # Update CSS styles
