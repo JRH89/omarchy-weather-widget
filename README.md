@@ -386,7 +386,7 @@ MIT License - feel free to use and modify for your Omarchy setup!
 
 ## 🆘 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/omarchy-weather-widget/issues)
+- **Issues**: [GitHub Issues](https://github.com/jrh89/omarchy-weather-widget/issues)
 - **Omarchy Community**: [Discord/Forum link]
 - **API Support**: [OpenWeatherMap Documentation](https://openweathermap.org/api)
 
