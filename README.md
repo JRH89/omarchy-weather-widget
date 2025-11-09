@@ -3,7 +3,8 @@
 A beautiful weather widget for Waybar in Omarchy Linux that displays current weather with a 3-day forecast on hover.
 
 <img src="https://drive.google.com/uc?export=view&id=1YlIQZvLBQx4EqYwSdEpZS0tY_2f7MSnb" alt="image" />
-<img src="https://drive.google.com/file/d/1h31Ez6vgHg5Qun5NdB_-QTPGVk-3ud3l/view?usp=sharing" alt="image" />
+<img src="https://drive.google.com/uc?export=view&id=1h31Ez6vgHg5Qun5NdB_-QTPGVk-3ud3l" alt="image" />
+
 
 
 
