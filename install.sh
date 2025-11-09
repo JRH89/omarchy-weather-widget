@@ -163,7 +163,7 @@ update_waybar_config() {
     cp "$CONFIG_FILE" "$CONFIG_FILE.backup-$(date +%Y%m%d-%H%M%S)"
     
     # Add weather widget to modules-center
-    sed -i 's/"modules-center": \[/"modules-center": ["clock", "custom/weather", /g' "$CONFIG_FILE"
+    sed -i 's/"modules-center": \["clock", "custom\/update", "custom\/screenrecording-indicator"/"modules-center": ["clock", "custom\/weather", "custom\/update", "custom\/screenrecording-indicator"/g' "$CONFIG_FILE"
     
     # Add weather widget configuration
     cat >> "$CONFIG_FILE" << 'EOF'
