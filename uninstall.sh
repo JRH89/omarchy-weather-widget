@@ -50,8 +50,8 @@ clean_waybar_config() {
     
     if [ -f "$CONFIG_FILE" ]; then
         # Remove weather widget from modules-center
-        sed -i 's/"custom/weather", //g' "$CONFIG_FILE"
-        sed -i 's/, "custom/weather"//g' "$CONFIG_FILE"
+        sed -i 's/"custom\/weather", //g' "$CONFIG_FILE"
+        sed -i 's/, "custom\/weather"//g' "$CONFIG_FILE"
         
         # Remove custom/weather configuration block
         sed -i '/"custom\/weather": {/,/},$/d' "$CONFIG_FILE"
