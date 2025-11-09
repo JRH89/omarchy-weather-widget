@@ -49,12 +49,36 @@ clean_waybar_config() {
     CONFIG_FILE="$HOME/.config/waybar/config.jsonc"
     
     if [ -f "$CONFIG_FILE" ]; then
-        # Remove weather widget from modules-center
-        sed -i 's/"custom\/weather", //g' "$CONFIG_FILE"
-        sed -i 's/, "custom\/weather"//g' "$CONFIG_FILE"
-        
-        # Remove custom/weather configuration block
-        sed -i '/"custom\/weather": {/,/},$/d' "$CONFIG_FILE"
+        # Use Python to properly clean the JSON configuration
+        python3 << EOF
+import json
+import sys
+
+config_file = "$CONFIG_FILE"
+
+try:
+    with open(config_file, 'r') as f:
+        config = json.load(f)
+    
+    # Remove weather widget from modules arrays
+    for module_list in ['modules-left', 'modules-center', 'modules-right']:
+        if module_list in config and 'custom/weather' in config[module_list]:
+            config[module_list].remove('custom/weather')
+    
+    # Remove custom/weather configuration
+    if 'custom/weather' in config:
+        del config['custom/weather']
+    
+    # Write back to file with proper formatting
+    with open(config_file, 'w') as f:
+        json.dump(config, f, indent=2)
+    
+    print("Waybar configuration cleaned successfully")
+    
+except Exception as e:
+    print(f"Error cleaning config: {e}")
+    sys.exit(1)
+EOF
         
         print_success "Cleaned Waybar configuration"
     fi
