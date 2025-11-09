@@ -72,7 +72,7 @@ cd omarchy-weather-widget
 ./install.sh
 ```
 
-**The installer will:**
+**The modular installer will:**
 - ✅ Check system compatibility
 - ✅ Install Python dependencies
 - ✅ Backup existing configuration files
@@ -81,6 +81,30 @@ cd omarchy-weather-widget
 - ✅ Update Waybar configuration
 - ✅ Add CSS styles
 - ✅ Test the installation
+
+### 🔧 Module-by-Module Installation
+
+For debugging or custom installations, you can run individual modules:
+
+```bash
+# Run specific modules
+./scripts/run-module.sh 1  # System check
+./scripts/run-module.sh 2  # Dependencies
+./scripts/run-module.sh 3  # Backup
+./scripts/run-module.sh 4  # Install files
+./scripts/run-module.sh 5  # Environment setup
+./scripts/run-module.sh 6  # Waybar config
+./scripts/run-module.sh 7  # CSS styling
+./scripts/run-module.sh 8  # Test installation
+./scripts/run-module.sh 9  # Restart Waybar
+```
+
+Each module can also be run directly:
+```bash
+bash scripts/01-system-check.sh
+bash scripts/02-dependencies.sh
+# ... etc
+```
 
 ### 🔧 Manual Install
 
@@ -237,13 +261,26 @@ Modify the CSS in `~/.config/waybar/style.css`:
 ```
 omarchy-weather-widget/
 ├── README.md              # This documentation
-├── install.sh             # Automated installation script
+├── install.sh             # Main modular installation script
+├── install.sh.backup      # Original monolithic installer (backup)
 ├── uninstall.sh           # Uninstallation script
 ├── weather.py             # Main weather widget script
 ├── weather-widget.sh      # Shell wrapper for environment variables
 ├── weather_widget.py      # Alternative widget with caching
 ├── weather-style.css      # Additional CSS styles
-└── waybar-weather.sh      # Legacy compatibility script
+├── waybar-weather.sh      # Legacy compatibility script
+└── scripts/               # Modular installation scripts
+    ├── common.sh          # Shared functions and colors
+    ├── 01-system-check.sh # System compatibility check
+    ├── 02-dependencies.sh # Python dependencies
+    ├── 03-backup.sh       # Backup existing files
+    ├── 04-install-files.sh # Install widget files
+    ├── 05-environment.sh  # API key and environment setup
+    ├── 06-waybar-config.sh # Waybar JSON configuration
+    ├── 07-css-styling.sh  # CSS style updates
+    ├── 08-test.sh         # Installation validation
+    ├── 09-restart.sh      # Waybar restart
+    └── run-module.sh      # Run individual modules for debugging
 ```
 
 ### Installed Files Location
@@ -268,8 +305,29 @@ After installation, files are placed in:
 ### Q: How do I change from Fahrenheit to Celsius?
 **A:** Edit `weather.py` and change `units="imperial"` to `units="metric"`.
 
-### Q: Can I customize the weather icons?
-**A:** Yes! The icons are defined in the `WEATHER_ICONS` dictionary in `weather.py`. You can replace them with any emoji or text.
+### Q: Can I run individual installation steps?
+**A:** Yes! Use the modular system to run specific steps:
+```bash
+./scripts/run-module.sh 1  # Just check system compatibility
+./scripts/run-module.sh 5  # Just set up API key
+./scripts/run-module.sh 9  # Just restart Waybar
+```
+
+### Q: What happened to the original install.sh?
+**A:** It's been backed up as `install.sh.backup`. The new `install.sh` uses a modular approach inspired by DHH's Omakub for better maintainability and debugging.
+
+### Q: How do I debug installation issues?
+**A:** Run modules individually to isolate problems:
+```bash
+# Test system compatibility
+bash scripts/01-system-check.sh
+
+# Test just the API key setup
+bash scripts/05-environment.sh
+
+# Test Waybar configuration
+bash scripts/06-waybar-config.sh
+```
 
 ### Q: Why isn't the widget updating?
 **A:** Check your internet connection and API key. You can also test manually by running `~/.config/waybar/weather-widget.sh` in your terminal.
