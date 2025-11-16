@@ -5,21 +5,18 @@ A beautiful weather widget for Waybar in Omarchy that displays current weather w
 <img src="https://drive.google.com/uc?export=view&id=1YlIQZvLBQx4EqYwSdEpZS0tY_2f7MSnb" alt="image" />
 <img src="https://drive.google.com/uc?export=view&id=1h31Ez6vgHg5Qun5NdB_-QTPGVk-3ud3l" alt="image" />
 
+## Features
 
+- **Current weather** with emoji icons that change based on conditions
+- **Temperature display** in Fahrenheit or Celsius
+- **Automatic location detection** via IP geolocation
+- **3-day forecast** on hover with detailed weather information
+- **Smart caching** to reduce API calls and improve performance
+- **Easy installation** with automated setup script
+- **Customizable styling** to match your Omarchy theme
+- **Automatic updates** every 15 minutes (configurable)
 
-
-## 🌟 Features
-
-- 🌤️ **Current weather** with emoji icons that change based on conditions
-- 🌡️ **Temperature display** in Fahrenheit or Celsius
-- 📍 **Automatic location detection** via IP geolocation
-- 📅 **3-day forecast** on hover with detailed weather information
-- ⚡ **Smart caching** to reduce API calls and improve performance
-- 🔧 **Easy installation** with automated setup script
-- 🎨 **Customizable styling** to match your Omarchy theme
-- 🔄 **Automatic updates** every 15 minutes (configurable)
-
-## 📸 Preview
+## Preview
 
 ### Normal State
 ```
@@ -28,13 +25,13 @@ A beautiful weather widget for Waybar in Omarchy that displays current weather w
 
 ### Hover State (Tooltip)
 ```
-📍 San Francisco, US
-☀️ Clear Sky - 72°F (Feels like 75°F)
-💨 Wind: 5 mph NW
-💧 Humidity: 65%
-🌅 Sunrise: 6:42 AM | 🌇 Sunset: 7:28 PM
+San Francisco, US
+Clear Sky - 72°F (Feels like 75°F)
+Wind: 5 mph NW
+Humidity: 65%
+Sunrise: 6:42 AM | Sunset: 7:28 PM
 
-📅 3-Day Forecast:
+3-Day Forecast:
 🌤️ Tomorrow: 68°F/55°F - Partly Cloudy
 🌧️ Thursday: 62°F/48°F - Light Rain
 ☀️ Friday: 70°F/58°F - Sunny
@@ -42,7 +39,7 @@ A beautiful weather widget for Waybar in Omarchy that displays current weather w
 
 The widget appears in the center of Waybar next to the clock, showing current temperature with an icon. Hover to see detailed weather information and a 3-day forecast.
 
-## 📋 Requirements
+## Requirements
 
 ### System Requirements
 - **Omarchy Linux** with Waybar installed
@@ -57,9 +54,9 @@ The widget appears in the center of Waybar next to the clock, showing current te
 ### Python Dependencies
 - `requests` package (auto-installed by setup script)
 
-## 🚀 Installation
+## Installation
 
-### ⚡ Quick Install (Recommended)
+### Quick Install (Recommended)
 
 The automated installer handles everything for you:
 
@@ -82,7 +79,7 @@ cd omarchy-weather-widget
 - ✅ Add CSS styles
 - ✅ Test the installation
 
-### 🔧 Module-by-Module Installation
+### Module-by-Module Installation
 
 For debugging or custom installations, you can run individual modules:
 
@@ -106,7 +103,7 @@ bash scripts/02-dependencies.sh
 # ... etc
 ```
 
-### 🔧 Manual Install
+### Manual Install
 
 If you prefer manual installation, follow these steps:
 
@@ -185,9 +182,9 @@ Add to `~/.config/waybar/style.css`:
 killall -q waybar && waybar &
 ```
 
-## ⚙️ Configuration
+## Configuration
 
-### 🔑 Get OpenWeatherMap API Key
+### Get OpenWeatherMap API Key
 
 1. **Sign up**: Visit [OpenWeatherMap](https://openweathermap.org/api)
 2. **Register**: Create a free account
@@ -195,7 +192,7 @@ killall -q waybar && waybar &
 4. **Verify Email**: Check your email and verify your account
 5. **Wait**: API keys may take 10-30 minutes to activate
 
-### 📍 Configure API Key
+### Configure API Key
 
 #### Method 1: Edit Environment File (Recommended)
 ```bash
@@ -212,7 +209,7 @@ echo 'export OPENWEATHER_API_KEY="your_actual_api_key_here"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### 🎨 Customization Options
+### Customization Options
 
 #### Temperature Units
 Edit `weather.py` and change the units parameter:
@@ -256,7 +253,7 @@ Modify the CSS in `~/.config/waybar/style.css`:
 }
 ```
 
-## 🗂️ File Structure
+## File Structure
 
 ```
 omarchy-weather-widget/
@@ -291,7 +288,7 @@ After installation, files are placed in:
 - `~/.config/waybar/config.jsonc` - Updated Waybar config
 - `~/.config/waybar/style.css` - Updated CSS styles
 
-## ❓ Frequently Asked Questions
+## Frequently Asked Questions
 
 ### Q: How much does this cost to run?
 **A:** The OpenWeatherMap free tier allows 1,000 API calls per day. The widget makes ~96 calls daily (every 15 minutes), so it's completely free to use.
@@ -332,7 +329,7 @@ bash scripts/06-waybar-config.sh
 ### Q: Why isn't the widget updating?
 **A:** Check your internet connection and API key. You can also test manually by running `~/.config/waybar/weather-widget.sh` in your terminal.
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### API Key Issues
 
@@ -393,7 +390,7 @@ bash scripts/06-waybar-config.sh
 2. Recommended minimum: 300 seconds (5 minutes)
 3. Recommended maximum: 3600 seconds (1 hour)
 
-## 🗑️ Uninstallation
+## Uninstallation
 
 ### Automated Uninstallation (Recommended)
 ```bash
@@ -427,7 +424,7 @@ rm -rf ~/.cache/waybar-weather
 killall -q waybar && waybar &
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -444,17 +441,17 @@ Contributions are welcome! Please follow these steps:
 - Test with different configurations
 - Update documentation as needed
 
-## 📄 License
+## License
 
 MIT License - feel free to use and modify for your Omarchy setup!
 
-## 🆘 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/jrh89/omarchy-weather-widget/issues)
 - **Omarchy Community**: [Discord/Forum link]
 - **API Support**: [OpenWeatherMap Documentation](https://openweathermap.org/api)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [OpenWeatherMap](https://openweathermap.org/) for providing weather data API
 - [Waybar](https://github.com/Alexays/Waybar) for the excellent status bar
